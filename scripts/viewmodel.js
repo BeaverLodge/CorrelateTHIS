@@ -7,18 +7,22 @@ window.AppViewModel = function() {
   this.ageFilter = ko.observable();
   this.sexFilterOptions = ko.computed(function() {
     if (!self.questionator()) return [];
-    return _(self.questionator().questions['Sex'].answers).map(
+    var options = [{ value: "Any", key: null }];
+    options = options.concat(_(self.questionator().questions['Sex'].answers).map(
       function(value, key) {
         return { value: value, key: key };
-      });
+      }));
+    return options;
   });
 
   this.ageFilterOptions = ko.computed(function() {
     if (!self.questionator()) return [];
-    return _(self.questionator().questions['AgeGroup1460plus'].answers).map(
+    var options = [{ value: "Any", key: null }];
+    options = options.concat(_(self.questionator().questions['AgeGroup1460plus'].answers).map(
       function(value, key) {
         return { value: value, key: key };
-      });
+      }));
+    return options;
   });
 
   this.filter = ko.computed(function() {
