@@ -1,12 +1,12 @@
 window.AppViewModel = function() {
-  this.loading = ko.observable();
-  this.sexFilterOptions = [];
+  this.loading = ko.observable(true);
+  this.sexFilterOptions = ko.observableArray([]);
   this.sexFilter = ko.observable();
-  this.ageFilterOptions = [];
+  this.ageFilterOptions = ko.observableArray([]);
   this.ageFilter = ko.observable();
 
 
-  ko.applyBinding(this);
+  ko.applyBindings(this);
 }
 
 $(function() {
