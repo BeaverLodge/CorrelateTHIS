@@ -24,11 +24,36 @@
 									optionsValue:'key', 
 									optionsText:'value',
 									value:sexFilter"></select>
-		<label for="sex">Age</label>
-		<select id="sex" data-bind="options:ageFilterOptions, 
+		<label for="age">Age</label>
+		<select id="age" data-bind="options:ageFilterOptions, 
 									optionsValue:'key', 
 									optionsText:'value',
 									value:ageFilter"></select>
+		<label for="alcohol">Alcohol</label>
+		<select id="alcohol" data-bind="options:alcoholFilterOptions, 
+  										  optionsValue:'key', 
+										  optionsText:'value',
+										  value:alcoholFilter"></select>
+		<label for="smoking">Smoking</label>
+		<select id="smoking" data-bind="options:smokingFilterOptions, 
+  										   optionsValue:'key', 
+										   optionsText:'value',
+										   value:smokingFilter"></select>
+		<label for="marijuana">Marijuana</label>
+		<select id="marijuana" data-bind="options:marijuanaFilterOptions, 
+  										  optionsValue:'key', 
+										  optionsText:'value',
+										  value:marijuanaFilter"></select>
+		<label for="illicit">Illicit</label>
+		<select id="illicit" data-bind="options:illicitFilterOptions, 
+										optionsValue:'key', 
+										optionsText:'value',
+										value:illicitFilter"></select>
+		<label for="remoteness">Remoteness</label>
+		<select id="remoteness" data-bind="options:remotenessFilterOptions, 
+  										   optionsValue:'key', 
+										   optionsText:'value',
+										   value:remotenessFilter"></select>
 
 		<!-- ko if:comparisons() -->
 		<div data-bind="alcoholBlock:comparisons()['Alcohol']"></div>
