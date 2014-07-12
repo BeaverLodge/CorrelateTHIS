@@ -4,12 +4,6 @@
 	font-family: 'Source Sans Pro', sans-serif;
 }
 
-.cup {
-	fill: #ff7f00;
-	stroke: #dbc5c5;
-	stroke-width: 4;
-}
-
 .block.age .background {
 	fill: blue;
 }
