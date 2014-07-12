@@ -92,7 +92,7 @@ Sex,1,Male,0
 Sex,2,Female,1
 ASGCremoteness4,-1,Neither CD nor postcode valid,
 ASGCremoteness4,1,Major Cities,0
-ASGCremoteness4,2,Inner Regional,100
+ASGCremoteness4,2,Inner Regional,50
 ASGCremoteness4,3,Outer Regional,200
 ASGCremoteness4,4,Remote/Very Remote,1000
 Alcohol,-1,Missing,
