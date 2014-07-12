@@ -11,9 +11,10 @@
 		<script src="./scripts/app.js"></script>
 		<script src="./scripts/viewmodel.js"></script>
 		<script src="./scripts/blocks/age_block.js"></script>
+		<script src="./scripts/blocks/smoking_block.js"></script>
 	</head>
 	<body>
-		<h1>CorrelateTHIS</h1>
+		<h1>DrugsInOz</h1>
 		<h2 data-bind="visible:loading">Loading...</h2>
 		<label for="sex">Sex</label>
 		<select id="sex" data-bind="options:sexFilterOptions, 
@@ -28,6 +29,7 @@
 
 		<!-- ko if:comparisons() -->
 		<div data-bind="ageBlock:comparisons()['AgeGroup1460plus']"></div>
+		<div data-bind="smokingBlock:comparisons()['Tobacco']"></div>
 		<!-- /ko -->
 	</body>
 </html>
