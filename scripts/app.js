@@ -2,7 +2,7 @@ $(function()
 {
   console.log("Loading data...");
   answerFrequency = {}
-  d3.csv("../data/2013-state-of-the-service-employee-census-data-snip.csv")
+  d3.csv("../data/ndshs2010.csv")
     .row(function(d) { return d })
     .get(function(error, rows) {
       _(rows).each(function(row) {
