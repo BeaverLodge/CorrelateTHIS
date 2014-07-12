@@ -30,7 +30,7 @@ window.AppViewModel = function() {
       filter["Sex"] = self.sexFilter();
     }
     return filter;
-  })
+  });
 
   this.filter.subscribe(function(nv) {
     console.log(nv);
