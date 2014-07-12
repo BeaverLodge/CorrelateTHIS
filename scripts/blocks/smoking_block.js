@@ -2,9 +2,11 @@ ko.bindingHandlers.smokingBlock = {
   init: function (element, valueAccessor) {
     var svg = d3.select(element)
       .append("svg")
-      .classed("block", true);
+      .classed("block", true)
+      .classed("smoking", true);
 
     svg.append("rect")
+       .classed("background", true)
        .attr("height", 180)
        .attr("width", 800)
        .attr("fill", "#EEE");
