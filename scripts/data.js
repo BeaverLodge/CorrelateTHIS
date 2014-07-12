@@ -54,7 +54,6 @@ window.DataHackMash = function() {
         console.log(questions[questionKey].answers[answerKey] 
             + ": " + (populationAAnswerFrequency[questionKey][answerKey] || 0).toFixed(3)
             + " vs " + (populationBAnswerFrequency[questionKey][answerKey] || 0).toFixed(3));
-
       }
     }
   }

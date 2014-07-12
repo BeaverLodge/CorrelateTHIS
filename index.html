@@ -13,5 +13,16 @@
 	</head>
 	<body>
 		<h1>CorrelateTHIS</h1>
+		<h2 data-bind="visible:loading">Loading...</h2>
+		<label for="sex">Sex</label>
+		<select id="sex" data-bind="options:sexFilterOptions, 
+									optionsValue:'key', 
+									optionsText:'value',
+									value:sexFilter"></select>
+		<label for="sex">Age</label>
+		<select id="sex" data-bind="options:ageFilterOptions, 
+									optionsValue:'key', 
+									optionsText:'value',
+									value:ageFilter"></select>
 	</body>
 </html>
