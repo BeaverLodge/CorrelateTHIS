@@ -4,6 +4,10 @@
 	font-family: 'Source Sans Pro', sans-serif;
 }
 
+.block.age .background {
+	fill: blue;
+}
+
 text.description {
 	font-size: 20px;
 	text-anchor: middle;
