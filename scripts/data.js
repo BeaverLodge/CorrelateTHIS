@@ -3,26 +3,38 @@ window.DataHackMash = function() {
 
   this.surveyResponses = null;
 
-  this.calculateQuestionAnswerFrequency = function()
+  this.calculateQuestionAnswerFrequency = function(filter)
   {
-    var questionAnswerFrequency = {}
-    _(self.surveyResponses).each(function(surveyResponse) {
+    var questionAnswerCount = {}
+    var filtered = _(self.surveyResponses).where(filter);
+    var filteredResults = filtered.length;
+    _(filtered).each(function(surveyResponse) {
       for (var question in surveyResponse)
       {    
         var answer = surveyResponse[question];
-        if (answer == " ") continue;
-        var currentQuestion = questionAnswerFrequency[question] || {};
-        currentQuestion[answer] = (currentQuestion[answer] || 0) + 1;
-        questionAnswerFrequency[question] = currentQuestion;
+        var currentQuestion = questionAnswerCount[question] || {};
+        currentQuestion[answer] = (currentQuestion[answer] || 0) + 1 / filteredResults;
+        questionAnswerCount[question] = currentQuestion;
       }
     }); 
-    return questionAnswerFrequency;
+    return questionAnswerCount;
   }
 
+  this.compareTwoPopulations = function(populationAFilter, populationBFilter) 
+  {
+    var populationAAnswerFrequency = self.calculateQuestionAnswerFrequency(populationAFilter);  
+    var populationBAnswerFrequency = self.calculateQuestionAnswerFrequency(populationBFilter);  
+    for (var questionKey in populationBAnswerFrequency)
+    {
+      console.log("question:" + questionKey)
+      console.log(populationAAnswerFrequency[questionKey]);
+      console.log(populationBAnswerFrequency[questionKey]);
+    }
+  }
 
   this.load = function(callback) {
     console.log("Loading data...");
-    d3.csv("../data/2013-state-of-the-service-employee-census-data-snip.csv")
+    d3.csv("../data/ndshs2010.csv")
       .get(function(error, rows) {
         self.surveyResponses = rows;
         console.log("Data loaded...");

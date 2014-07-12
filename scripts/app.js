@@ -2,6 +2,6 @@ $(function()
 {
   var masher = new DataHackMash();
   masher.load(function() {
-    console.log(masher.calculateQuestionAnswerFrequency());
+    masher.compareTwoPopulations({}, { Alcohol: '2' });
   });
 });
