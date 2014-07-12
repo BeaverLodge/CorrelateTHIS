@@ -18,7 +18,7 @@
 		<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900' rel='stylesheet' type='text/css'>		
 	</head>
 	<body>
-		<h1>DrugsInOz</h1>
+		<h1>Australia On Drugs</h1>
 		<h2 data-bind="visible:loading">Loading...</h2>
 
 		<!-- ko if:comparisons() -->
@@ -67,11 +67,13 @@
 												   value:remotenessFilter"></select>
 			</p>
 		</section>
-
-		<div data-bind="ageBlock:comparisons()['AgeGroup1460plus']"></div>
-		<div data-bind="smokingBlock:comparisons()['Tobacco']"></div>
-		<div data-bind="locationBlock:comparisons()['ASGCremoteness4']"></div>
-		<div data-bind="alcoholBlock:comparisons()['Alcohol']"></div>
+		<section style="display:block; float:left">
+			<h2 data-bind="text:title"></h2>
+			<div data-bind="ageBlock:comparisons()['AgeGroup1460plus']"></div>
+			<div data-bind="smokingBlock:comparisons()['Tobacco']"></div>
+			<div data-bind="alcoholBlock:comparisons()['Alcohol']"></div>
+		  <div data-bind="locationBlock:comparisons()['ASGCremoteness4']"></div>
+		</section>
 		<!-- /ko -->
 	</body>
 </html>
