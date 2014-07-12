@@ -19,6 +19,13 @@ text.description {
 	text-anchor: middle;
 }
 
+h2 {
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: bold;
+	display: block;
+	width: 800px;
+}
+
 section.filters {
 	float: left;
 	padding-right: 20px;
