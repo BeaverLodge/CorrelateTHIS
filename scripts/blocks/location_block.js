@@ -33,7 +33,7 @@ ko.bindingHandlers.locationBlock = {
     var svg = d3.select(element).select("svg");
 
     if (diff <= 0 ) { message = "...on average live " + absDiff + "km closer to the city" }
-    else { message = "...on average live" + absDiff + "km further away from the city" }
+    else { message = "...on average live " + absDiff + "km further away from the city" }
 
     var text = svg.select(".description")
                   .text(message);
