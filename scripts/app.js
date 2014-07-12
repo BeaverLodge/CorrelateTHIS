@@ -1,10 +1,11 @@
 $(function() 
 {
-  var questionator = new Questionator();
-  questionator.showMeThem(function(questions) {
-    var masher = new DataHackMash();
-      masher.load(function() {
-        masher.compareTwoPopulations({ Alcohol: '1' }, {}, questions);
-      });
+  window.questionator = new Questionator();
+  window.masher = new DataHackMash();
+
+  var tasks = [questionator.load, masher.load]
+
+  async.parallel(tasks, function(err) {
+    masher.compareTwoPopulations({ Alcohol: '1' }, {}, questionator.questions);
   });
 });
