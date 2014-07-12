@@ -11,11 +11,8 @@ $(function()
     .row(function(d) { return d; })
     .get(function(error, rows) {
       _(rows).each(function(row) {
-        if (questions[row.Variable] == undefined) {
-          questions[row.Variable] = {answers: [{value: row.Value, label: row.Label}]};
-        } else {
-          questions[row.Variable].answers.push({value: row.Value, label: row.Label});
-        }
+        if (questions[row.Variable] == undefined) { questions[row.Variable] = {answers: []}; }
+        questions[row.Variable].answers[row.Value] = row.Label;
       });
     d3.csv("../data/variabledescriptions.csv")
       .row(function(d) {return d; })
