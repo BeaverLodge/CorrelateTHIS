@@ -88,8 +88,8 @@ B1,3,Good, 0.5
 B1,4,Fair, 0.25
 B1,5,Poor, 0
 Sex,-2,Not answered,
-Sex,1,Male,Male
-Sex,2,Female,Female
+Sex,1,Male,0
+Sex,2,Female,1
 ASGCremoteness4,-1,Neither CD nor postcode valid,
 ASGCremoteness4,1,Major Cities,0
 ASGCremoteness4,2,Inner Regional,100
