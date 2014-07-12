@@ -27,12 +27,13 @@ window.DataHackMash = function() {
     for (var questionKey in populationBAnswerFrequency)
     {
       if (!questions[questionKey]) continue;
-      console.log(questions[questionKey].question)
+      console.log("\n\n" + questions[questionKey].question);
       var unionOfAnswerKeys = _.union(_(populationAAnswerFrequency).keys(), _(populationBAnswerFrequency).keys())
       var distinctAnswerKeys = _.uniq(unionOfAnswerKeys);
       for (var answerKey in distinctAnswerKeys)
       {
-        console.log(answerKey 
+        if (!questions[questionKey].answers[answerKey]) continue;
+        console.log(questions[questionKey].answers[answerKey] 
             + ": " + (populationAAnswerFrequency[questionKey][answerKey] || 0).toFixed(3)
             + " vs " + (populationBAnswerFrequency[questionKey][answerKey] || 0).toFixed(3));
       }

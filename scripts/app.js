@@ -23,7 +23,7 @@ $(function()
       console.log("Questions loaded...");
       console.log(questions);
       masher.load(function() {
-        masher.compareTwoPopulations({ Alcohol: '2' }, {}, questions);
+        masher.compareTwoPopulations({ Alcohol: '1' }, {}, questions);
       });
       });
     });
