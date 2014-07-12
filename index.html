@@ -10,6 +10,7 @@
 		<script src="./scripts/data.js"></script>
 		<script src="./scripts/app.js"></script>
 		<script src="./scripts/viewmodel.js"></script>
+		<script src="./scripts/blocks/sex_block.js"></script>
 		<script src="./scripts/blocks/age_block.js"></script>
 		<script src="./scripts/blocks/smoking_block.js"></script>
 		<script src="./scripts/blocks/alcohol_block.js"></script>
@@ -69,6 +70,7 @@
 		<section style="display:block; float:left">
 			<h2 data-bind="text:title"></h2>
 			<div data-bind="ageBlock:comparisons()['AgeGroup1460plus']"></div>
+			<div data-bind="sexBlock:comparisons()['Sex']"></div>
 			<div data-bind="smokingBlock:comparisons()['Tobacco']"></div>
 			<div data-bind="alcoholBlock:comparisons()['Alcohol']"></div>
 		</section>
