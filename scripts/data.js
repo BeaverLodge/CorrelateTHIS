@@ -38,16 +38,22 @@ window.DataHackMash = function() {
   {
     var populationAAnswerFrequency = self.calculateQuestionAnswerFrequency(populationAFilter);  
     var populationBAnswerFrequency = self.calculateQuestionAnswerFrequency(populationBFilter);  
+    var blah = {};
     for (var questionKey in populationBAnswerFrequency)
     {
       if (!questions[questionKey]) continue;
       console.log("\n\n" + questions[questionKey].question);
       var unionOfAnswerKeys = _.union(_(populationAAnswerFrequency).keys(), _(populationBAnswerFrequency).keys())
       var distinctAnswerKeys = _.uniq(unionOfAnswerKeys);
-      var populationAAverage = self.meanUnitValueForQuestion(populationAAnswerFrequency[questionKey], questions[questionKey]);
-      var populationBAverage = self.meanUnitValueForQuestion(populationBAnswerFrequency[questionKey], questions[questionKey]);
+      var populationAMean = self.meanUnitValueForQuestion(populationAAnswerFrequency[questionKey], questions[questionKey]);
+      var populationBMean = self.meanUnitValueForQuestion(populationBAnswerFrequency[questionKey], questions[questionKey]);
 
-      console.log("Mean of " + populationAAverage.toFixed(3) + " vs " + populationBAverage.toFixed(3));
+      blah[questionKey] = {
+        populationAMean: populationAMean,
+        populationBMean: populationBMean
+      };
+
+      console.log("Mean of " + populationAMean.toFixed(3) + " vs " + populationBMean.toFixed(3));
       for (var answerKey in distinctAnswerKeys)
       {
         if (!questions[questionKey].answers[answerKey]) continue;
@@ -56,6 +62,7 @@ window.DataHackMash = function() {
             + " vs " + (populationBAnswerFrequency[questionKey][answerKey] || 0).toFixed(3));
       }
     }
+    return blah;
   }
 
   this.load = function(callback) {

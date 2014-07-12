@@ -32,6 +32,13 @@ window.AppViewModel = function() {
     return filter;
   });
 
+  this.comparisons = ko.computed(function() {
+    if (self.loading()) {
+      return;
+    }
+    return masher.compareTwoPopulations(self.filter(), {}, questionator.questions);
+  });
+
   this.filter.subscribe(function(nv) {
     console.log(nv);
   });
@@ -41,7 +48,6 @@ window.AppViewModel = function() {
   this.load = function() {
     var tasks = [questionator.load, masher.load]
     async.parallel(tasks, function(err) {
-      masher.compareTwoPopulations({ Alcohol: '1' }, {}, questionator.questions);
       self.loading(false);
       self.questionator(questionator);
     });

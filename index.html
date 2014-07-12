@@ -10,6 +10,7 @@
 		<script src="./scripts/data.js"></script>
 		<script src="./scripts/app.js"></script>
 		<script src="./scripts/viewmodel.js"></script>
+		<script src="./scripts/blocks/age_block.js"></script>
 	</head>
 	<body>
 		<h1>CorrelateTHIS</h1>
@@ -24,5 +25,9 @@
 									optionsValue:'key', 
 									optionsText:'value',
 									value:ageFilter"></select>
+
+		<!-- ko if:comparisons() -->
+		<div data-bind="ageBlock:comparisons()['AgeGroup1460plus']"></div>
+		<!-- /ko -->
 	</body>
 </html>
