@@ -12,6 +12,7 @@
 		<script src="./scripts/viewmodel.js"></script>
 		<script src="./scripts/blocks/age_block.js"></script>
 		<script src="./scripts/blocks/smoking_block.js"></script>
+		<script src="./scripts/blocks/alcohol_block.js"></script>
 		<link rel="stylesheet" href="./styles/app.css" />
 	</head>
 	<body>
@@ -29,6 +30,7 @@
 									value:ageFilter"></select>
 
 		<!-- ko if:comparisons() -->
+		<div data-bind="alcoholBlock:comparisons()['Alcohol']"></div>
 		<div data-bind="ageBlock:comparisons()['AgeGroup1460plus']"></div>
 		<div data-bind="smokingBlock:comparisons()['Tobacco']"></div>
 		<!-- /ko -->
