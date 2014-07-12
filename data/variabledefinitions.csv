@@ -1,0 +1,132 @@
+Variable,Value,Label
+A1,-2,Not answered
+A1,1,Alcohol
+A1,2,Tobacco
+A1,3,"Tranquillisers, Sleeping pills"
+A1,4,Prescription Pain-killers|Analgesics
+A1,5,Over-the-counter Pain-killers|Analgesics
+A1,6,Steroids
+A1,7,Sniffing Petrol|Glue|Aerosols|Solvents
+A1,8,Marijuana|Cannabis
+A1,9,Hallucinogens|LSD|PCP
+A1,10,Methadone|Buprenorphine
+A1,11,Meth|amphetamine
+A1,12,Heroin
+A1,13,Other Opioids|Opiates
+A1,14,Cocaine
+A1,15,Ecstasy
+A1,16,GHB
+A1,17,Ketamine
+A1,18,Kava
+A1,19,Drugs other than listed
+A1,20,None|Can't think of any
+A2,-2,Not answered
+A2,1,Alcohol
+A2,2,Tobacco
+A2,3,"Tranquillisers, Sleeping pills"
+A2,4,Prescription Pain-killers|Analgesics
+A2,5,Over-the-counter Pain-killers|Analgesics
+A2,6,Steroids
+A2,7,Sniffing Petrol|Glue|Aerosols|Solvents
+A2,8,Marijuana|Cannabis
+A2,9,Hallucinogens|LSD|Magic Mushrooms
+A2,10,Methadone|Buprenorphine
+A2,11,Meth|amphetamine
+A2,12,Heroin
+A2,13,"Other Opioids|Opiates (e.g. Morphine, Pethidine)"
+A2,14,Cocaine|Crack
+A2,15,Ecstasy
+A2,16,GHB
+A2,17,Ketamine
+A2,18,Kava
+A2,19,Other
+A3,-2,Not answered
+A3,1,Excessive drinking of alcohol
+A3,2,Tobacco smoking
+A3,3,"Non-medical use of Tranquillisers, Sleeping pills"
+A3,4,Non-medical use of Prescription Pain-killers|Analgesics
+A3,5,Non-medical use of Over-the-counter Pain-killers|Analgesics
+A3,6,Non-medical use of Steroids
+A3,7,Sniffing Petrol|Glue|Aerosols|Solvents
+A3,8,Marijuana|Cannabis
+A3,9,Hallucinogens|LSD|Magic Mushrooms
+A3,10,Non-medical use of Methadone|Buprenorphine
+A3,11,Non-medical use of Meth|amphetamine
+A3,12,Heroin
+A3,13,"Non-medical use of Other Opioids|Opiates (e.g. Morphine, Pet"
+A3,14,Cocaine|Crack
+A3,15,Ecstasy
+A3,16,GHB
+A3,17,Ketamine
+A3,18,Kava
+A3,19,None of these
+A4_01,-2,Not answered
+A4_01,-1,Don't know enough to say
+A4_01,1,Strongly approve
+A4_01,2,Approve
+A4_01,3,Neither approve nor disapprove
+A4_01,4,Disapprove
+A4_01,5,Strongly disapprove
+A4_02,-2,Not answered
+A4_02,-1,Don't know enough to say
+A4_02,1,Strongly approve
+A4_02,2,Approve
+A4_02,3,Neither approve nor disapprove
+A4_02,4,Disapprove
+A4_02,5,Strongly disapprove
+A4_08,-2,Not answered
+A4_08,-1,Don't know enough to say
+A4_08,1,Strongly approve
+A4_08,2,Approve
+A4_08,3,Neither approve nor disapprove
+A4_08,4,Disapprove
+A4_08,5,Strongly disapprove
+B1,-2,Not answered
+B1,1,Excellent
+B1,2,Very good
+B1,3,Good
+B1,4,Fair
+B1,5,Poor
+Sex,-2,Not answered
+Sex,1,Male
+Sex,2,Female
+ASGCremoteness4,-1,Neither CD nor postcode valid
+ASGCremoteness4,1,Major Cities
+ASGCremoteness4,2,Inner Regional
+ASGCremoteness4,3,Outer Regional
+ASGCremoteness4,4,Remote/Very Remote
+Alcohol,-1,Missing
+Alcohol,1,Daily
+Alcohol,2,Weekly
+Alcohol,3,Less than weekly
+Alcohol,4,Ex-drinker (not in last 12 months)
+Alcohol,5,Never drinker (full glass)
+Marijuana,-1,Missing
+Marijuana,1,Never used
+Marijuana,2,Ex-user
+Marijuana,3,Recent user
+Illicit,-1,Missing
+Illicit,1,Never used
+Illicit,2,Ex-user
+Illicit,3,Recent user
+G2month,-1,Missing
+G2month,0,Abstainer
+G2month,1,Low risk (less than 5 drinks)
+G2month,2,Risky (5 or more drinks)
+AverageG1,-1,Missing
+AverageG1,0,Abstainers
+AverageG1,1,2 or less drinks on average
+AverageG1,2,More than 2 drinks on average
+AgeGroup1460plus,-1,Missing
+AgeGroup1460plus,1, 14-17
+AgeGroup1460plus,2,18-24
+AgeGroup1460plus,3,25-29
+AgeGroup1460plus,4,30-39
+AgeGroup1460plus,5, 40-49
+AgeGroup1460plus,6,50-59
+AgeGroup1460plus,7,60+
+Tobacco,-1,Missing
+Tobacco,1,Daily smoker
+Tobacco,2,Current occasional smoker
+Tobacco,3,Ex-smoker
+Tobacco,4,Never smoked (more than 100 cigarettes)
