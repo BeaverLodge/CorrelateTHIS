@@ -2,3 +2,9 @@
 	width: 800px;
 	height: 180px;
 }
+
+.cup {
+	fill: #ff7f00;
+	stroke: #dbc5c5;
+	stroke-width: 4;
+}
