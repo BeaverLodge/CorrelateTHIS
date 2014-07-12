@@ -27,7 +27,6 @@ ko.bindingHandlers.locationBlock = {
     var absDiff = Math.abs(diff);
     var distance = value.populationBMean + diff;
 
-    console.log(distance);
     var svg = d3.select(element).select("svg");
 
     if (diff <= 0 ) { message = "...on average live " + absDiff + "km closer to the city" }
