@@ -12,3 +12,16 @@ text.description {
 	font-size: 20px;
 	text-anchor: middle;
 }
+
+section.filters {
+	float: left;
+	padding-right: 20px;
+}
+section.filters label {
+	display: block;
+	width: 100px;
+}
+
+section.filters select {
+	max-width: 180px;
+}
