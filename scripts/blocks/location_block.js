@@ -10,6 +10,9 @@ ko.bindingHandlers.locationBlock = {
        .attr("width", 800)
        .attr("fill", "#FFEFD4");
 
+    svg.append("g")
+      .classed("cityscape", true)
+
     svg.append("text")
        .classed("description", true)
        .attr("x", 400)
@@ -25,7 +28,7 @@ ko.bindingHandlers.locationBlock = {
 
     var diff = Math.round(value.populationAMean - value.populationBMean);
     var absDiff = Math.abs(diff);
-    var distance = value.populationBMean + diff;
+    var distance = (value.populationBMean + diff) /1000 * 600;
 
     var svg = d3.select(element).select("svg");
 
@@ -37,12 +40,12 @@ ko.bindingHandlers.locationBlock = {
 
 
     var updater = svg.selectAll(".road")
-      .data([absDiff]);
+      .data([distance]);
 
     updater.enter()
       .append("rect")
-        .attr("x", 460)
-        .attr("y", 80)
+        .attr("x", 600)
+        .attr("y", 150)
         .attr("width", 0)
         .attr("height", 20)
         .attr("class", "road")
@@ -50,49 +53,33 @@ ko.bindingHandlers.locationBlock = {
 
     updater
       .transition()
-      .attr("x", function(d) {return 460 - (d * 30); })
-      .attr("width", function(d) { return d * 30; } );
+      .attr("x", function(d) { return 630 - d; })
+      .attr("width", function(d) { return d; } );
 
     updater.exit()
         .transition()
         .attr("width", 0)
         .remove();
 
-    var city = {color: "grey",
-                points: [{"x": 663, "y": 155},
-                         {"x": 660, "y": 20},
-                         {"x": 700, "y": 25},
-                         {"x": 697, "y": 155}]}
+    var buildings = [{stroke: "#4C4C4C", fill: "#666666",
+                      path: "m710,162 l14,4 l27,-70 l-30,-11 l-11,77z"},
+                     {stroke: "#666666", fill: "#7f7f7f",
+                      path: "m697,165 l23,1 l30,-144 l-49,-2 l-4,145z"},
+                     {stroke: "#4c4c4c", fill: "#666666",
+                      path: "m679,166 l-25,0 l-36,-120 l52,-4 l9,123z"},
+                     {stroke: "#666666", fill: "#999999",
+                      path: "m673,167 l-26,-158 l68,0 l-13,158 l-28,0z"}];
+    var cityscape = svg.select(".cityscape");
 
-    var city_background = {color: "#3A393A",
-                           points: [{"x": 630, "y": 155},
-                                    {"x": 620, "y": 45},
-                                    {"x": 740, "y": 40},
-                                    {"x": 730, "y": 155}]}
-
-    svg.selectAll(".city-background")
-      .data([city_background.points])
-      .enter()
-        .append("polygon")
-          .attr("points", function(d) {
-            return d.map(function(d) {
-              return [d.x, d.y].join(",");
-            }).join(" ");
-          })
-          .attr("stroke", city_background.color)
-          .attr("fill", city_background.color);
-
-    svg.selectAll(".city")
-      .data([city.points])
-      .enter()
-        .append("polygon")
-          .attr("points", function(d) {
-            return d.map(function(d) {
-              return [d.x, d.y].join(",");
-            }).join(" ");
-          })
-          .attr("stroke", city.color)
-          .attr("fill", city.color);
+    cityscape.selectAll(".buildings")
+        .data(buildings)
+        .enter()
+          .append("path")
+            .attr("d", function(d) { return d.path; })
+            .attr("stroke", function(d) { return d.stroke; })
+            .attr("stroke-width", 5)
+            .attr("fill", function(d) { return d.fill; })
+            .classed("buildings", true);
 
   }
 };
