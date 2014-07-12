@@ -42,7 +42,7 @@ window.DataHackMash = function() {
     for (var questionKey in populationBAnswerFrequency)
     {
       if (!questions[questionKey]) continue;
-      console.log("\n\n" + questions[questionKey].question);
+      // console.log("\n\n" + questions[questionKey].question);
       var unionOfAnswerKeys = _.union(_(populationAAnswerFrequency).keys(), _(populationBAnswerFrequency).keys())
       var distinctAnswerKeys = _.uniq(unionOfAnswerKeys);
       var populationAMean = self.meanUnitValueForQuestion(populationAAnswerFrequency[questionKey], questions[questionKey]);
@@ -53,14 +53,14 @@ window.DataHackMash = function() {
         populationBMean: populationBMean
       };
 
-      console.log("Mean of " + populationAMean.toFixed(3) + " vs " + populationBMean.toFixed(3));
-      for (var answerKey in distinctAnswerKeys)
-      {
-        if (!questions[questionKey].answers[answerKey]) continue;
-        console.log(questions[questionKey].answers[answerKey] 
-            + ": " + (populationAAnswerFrequency[questionKey][answerKey] || 0).toFixed(3)
-            + " vs " + (populationBAnswerFrequency[questionKey][answerKey] || 0).toFixed(3));
-      }
+      // console.log("Mean of " + populationAMean.toFixed(3) + " vs " + populationBMean.toFixed(3));
+      // for (var answerKey in distinctAnswerKeys)
+      // {
+      //   if (!questions[questionKey].answers[answerKey]) continue;
+      //   console.log(questions[questionKey].answers[answerKey] 
+      //       + ": " + (populationAAnswerFrequency[questionKey][answerKey] || 0).toFixed(3)
+      //       + " vs " + (populationBAnswerFrequency[questionKey][answerKey] || 0).toFixed(3));
+      // }
     }
     return blah;
   }
