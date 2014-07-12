@@ -2,8 +2,7 @@ ko.bindingHandlers.smokingBlock = {
   init: function (element, valueAccessor) {
     d3.select(element)
       .append("svg")
-      .attr("width", 400)
-      .attr("height", 200);
+      .classed("block", true);
   },
   update: function (element, valueAccessor) {
     var value = ko.unwrap(valueAccessor());
@@ -17,8 +16,6 @@ ko.bindingHandlers.smokingBlock = {
       data.push(diff - Math.floor(diff));
 
     svg = d3.select(element).select("svg");
-    svg.style("background", "red");
-
     var updater = svg.selectAll(".cups")
        .data(data);
     
