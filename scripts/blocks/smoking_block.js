@@ -1,43 +1,108 @@
 ko.bindingHandlers.smokingBlock = {
   init: function (element, valueAccessor) {
-    d3.select(element)
+    var svg = d3.select(element)
       .append("svg")
       .classed("block", true);
+
+    svg.append("rect")
+       .attr("height", 180)
+       .attr("width", 800)
+       .attr("fill", "#EEE");
+
+    svg.append("g")
+       .classed("ciggi-group", true)
+
+    svg.append("text")
+       .classed("description", true)
+       .attr("x", 400)
+       .attr("y", 40);
+
   },
   update: function (element, valueAccessor) {
     var value = ko.unwrap(valueAccessor());
 
-    var diff = Math.abs(value.populationAMean - value.populationBMean);
+    var diff = Math.abs(value.populationAMean - value.populationBMean) * 7;
 
     var data = [];
-    for (var i = 0; i < Math.floor(diff); i++)
-      data.push(1);
-    if (diff - Math.floor(diff) > 0)
-      data.push(diff - Math.floor(diff));
 
-    svg = d3.select(element).select("svg");
-    var updater = svg.selectAll(".cups")
+    var lessThan = value.populationAMean < value.populationBMean ? true : false;
+
+    for (var i = 0; i < Math.floor(diff); i++) data.push(1);
+    if (diff - Math.floor(diff) > 0) data.push(diff - Math.floor(diff));
+
+    var svg = d3.select(element).select("svg");
+    var ciggiGroup = svg.select(".ciggi-group");
+
+    var adjective = lessThan ? "fewer" : "more"
+    var text = svg.select(".description")
+                  .text("...on average smoke " + Math.round(diff * 10) / 10 + " " + adjective + " cigarettes a week");
+    ciggiGroup.attr("transform", "translate(20 20)")
+
+    var updater = ciggiGroup.selectAll(".ciggi")
        .data(data);
-    
+
+    var ciggiHeight = 140;
+    var ciggiWidth = 15;
+    var filterHeight = 40;
+
     updater.enter()
-      .append("rect")
-      .attr("x", function(d, i) { return i * 15; } )
-      .attr("y", 10)
-      .attr("width", 10)
-      .attr("height", 0)
-      .attr("class", "cups")
-      .attr("background", "pink");
+      .append("g")
+        .classed("ciggi", true)
+        .each(function(d, i) {
+          var ciggi = d3.select(this);
+          ciggi.append("rect")
+            .classed("ciggi-body", true)
+            .attr("x", i * (ciggiWidth + 5) )
+            .attr("width", ciggiWidth)
+            .attr("y", ciggiHeight - filterHeight)
+            .attr("height", 0)
+            .attr("fill", "white")
+
+          ciggi.append("rect")
+            .classed("ciggi-filter", true)
+            .attr("x", i * (ciggiWidth + 5) )
+            .attr("width", ciggiWidth)
+            .attr("y", ciggiHeight - filterHeight)
+            .attr("height", filterHeight)
+            .attr("fill", "#e09c3b")
+
+          ciggi.append("rect")
+            .classed("ciggi-filter-band", true)
+            .attr("x", i * (ciggiWidth + 5) )
+            .attr("width", ciggiWidth)
+            .attr("y", ciggiHeight - filterHeight)
+            .attr("height", 3)
+            .attr("fill", "#a88815")
+
+
+          ciggi.append("rect")
+            .classed("ciggi-flame", true)
+            .attr("x", i * (ciggiWidth + 5) )
+            .attr("width", ciggiWidth)
+            .attr("y", 0)
+            .attr("height", 10)
+            .attr("fill", "#444")
+        });
 
     updater
-      .transition()
-      .delay(function(d, i) { return i * 500; })
-      .attr("y", function(d) { return 10 - d * 10; } )
-      .attr("height", function(d) { return d * 10; } );
+      .each(function(d, i) {
+        var ciggi = d3.select(this);        
+        ciggi.select(".ciggi-body")
+             .transition()
+             // .delay(function(d, i) { return i * 100; })
+             .attr("y", (ciggiHeight - filterHeight) - d * (ciggiHeight - filterHeight) )
+             .attr("height", d * (ciggiHeight - filterHeight) );
+        ciggi.select(".ciggi-flame")
+          .transition()
+          // .delay(function(d, i) { return i * 100; })
+          .attr("y", (ciggiHeight - filterHeight) - d * (ciggiHeight - filterHeight) )
+          .attr("height", 10 )
+          .attr("opacity", (d === 1 ? 0 : 1));
+      })
 
     updater.exit()
-        .transition()
-        .attr("y", 10)
-        .attr("height", 0)
-        .remove();
+      .remove();
+
+    window.ciggiData = data;
   }
 };

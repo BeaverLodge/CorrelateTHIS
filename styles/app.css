@@ -1,4 +1,10 @@
 .block {
 	width: 800px;
 	height: 180px;
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+text.description {
+	font-size: 20px;
+	text-anchor: middle;
 }
