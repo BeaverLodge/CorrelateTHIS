@@ -20,15 +20,22 @@ window.DataHackMash = function() {
     return questionAnswerCount;
   }
 
-  this.compareTwoPopulations = function(populationAFilter, populationBFilter) 
+  this.compareTwoPopulations = function(populationAFilter, populationBFilter, questions) 
   {
     var populationAAnswerFrequency = self.calculateQuestionAnswerFrequency(populationAFilter);  
     var populationBAnswerFrequency = self.calculateQuestionAnswerFrequency(populationBFilter);  
     for (var questionKey in populationBAnswerFrequency)
     {
-      console.log("question:" + questionKey)
-      console.log(populationAAnswerFrequency[questionKey]);
-      console.log(populationBAnswerFrequency[questionKey]);
+      if (!questions[questionKey]) continue;
+      console.log(questions[questionKey].question)
+      var unionOfAnswerKeys = _.union(_(populationAAnswerFrequency).keys(), _(populationBAnswerFrequency).keys())
+      var distinctAnswerKeys = _.uniq(unionOfAnswerKeys);
+      for (var answerKey in distinctAnswerKeys)
+      {
+        console.log(answerKey 
+            + ": " + (populationAAnswerFrequency[questionKey][answerKey] || 0).toFixed(3)
+            + " vs " + (populationBAnswerFrequency[questionKey][answerKey] || 0).toFixed(3));
+      }
     }
   }
 

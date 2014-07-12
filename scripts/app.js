@@ -1,12 +1,10 @@
 $(function() 
 {
   var masher = new DataHackMash();
-  masher.load(function() {
-    masher.compareTwoPopulations({}, { Alcohol: '2' });
-  });
 
   console.log("Loading questions...");
   questions = {};
+
   d3.csv("../data/variabledefinitions.csv")
     .row(function(d) { return d; })
     .get(function(error, rows) {
@@ -27,6 +25,9 @@ $(function()
         });
       console.log("Questions loaded...");
       console.log(questions);
+      masher.load(function() {
+        masher.compareTwoPopulations({ Alcohol: '2' }, {}, questions);
+      });
       });
     });
 });
