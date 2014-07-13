@@ -8,7 +8,7 @@ ko.bindingHandlers.locationBlock = {
        .classed("background", true)
        .attr("height", 180)
        .attr("width", 800)
-       .attr("fill", "#FFEFD4");
+       .attr("fill", "#9A5E33");
 
     svg.append("g")
       .classed("cityscape", true);
@@ -17,15 +17,24 @@ ko.bindingHandlers.locationBlock = {
         .classed("car", true);
 
     var car = svg.select(".car");
-    car.append("ellipse").attr("fill", "#3f7f00").attr("cx", 0).attr("cy", 7).attr("rx", 26).attr("ry", 6)
-    car.append("circle").attr("fill", "#3f7f00").attr("cx", 0).attr("cy", 0).attr("r", 13);
+    car.append("ellipse").attr("fill", "#73B9F3").attr("cx", 0).attr("cy", 7).attr("rx", 26).attr("ry", 6)
+    car.append("circle").attr("fill", "#73B9F3").attr("cx", 0).attr("cy", 0).attr("r", 13);
     car.append("circle").attr("fill", "#7f7f7f").attr("stroke", "#191919").attr("stroke-width", 4).attr("cx", 10).attr("cy", 13).attr("r", 5.2);
     car.append("circle").attr("fill", "#7f7f7f").attr("stroke", "#101010").attr("stroke-width", 4).attr("cx", -12).attr("cy", 13).attr("r", 5.2);
 
     svg.append("text")
+       .classed("description-percentage", true)
+       .style("font-size", 90)
+       .style("fill", "#73B9F3")
+       .attr("x", 270)
+       .attr("y", 94);
+
+    svg.append("text")
        .classed("description", true)
-       .attr("x", 400)
-       .attr("y", 40);
+       .style("font-size", 20)
+       .style("fill", "#73B9F3")
+       .attr("x", 310)
+       .attr("y", 120);
 
   },
   update: function (element, valueAccessor) {
@@ -41,10 +50,12 @@ ko.bindingHandlers.locationBlock = {
 
     var svg = d3.select(element).select("svg");
 
-    if (diff <= 0 ) { message = "...on average live " + absDiff + "km closer to the city" }
-    else { message = "...on average live " + absDiff + "km further away from the city" }
+    if (diff <= 0 ) { message = "closer to the city" }
+    else { message = "further away from the city" }
 
-    var text = svg.select(".description")
+    svg.select(".description-percentage")
+                  .text(absDiff + "km");
+    svg.select(".description")
                   .text(message);
 
     var roadPath = function(d) {
@@ -61,9 +72,9 @@ ko.bindingHandlers.locationBlock = {
         var road = d3.select(this);
         road.append("path")
           .attr("d", roadPath(d) )
-          .attr("stroke-dasharray", "40, 10")
+          .attr("stroke-dasharray", "30, 15")
           .attr("stroke-width", 12)
-          .attr("stroke", "black")
+          .attr("stroke", "#73B9F3")
           .classed("road", true);
         var car = svg.select(".car");
         car.transition()
@@ -86,13 +97,13 @@ ko.bindingHandlers.locationBlock = {
         .attr("d", function(d) {return roadPath(d); })
         .remove();
 
-    var buildings = [{stroke: "#4C4C4C", fill: "#666666",
+    var buildings = [{stroke: "#4C4C4C", fill: "#7f7f7f",
                       path: "m710,162 l14,4 l27,-70 l-30,-11 l-11,77z"},
-                     {stroke: "#666666", fill: "#7f7f7f",
-                      path: "m697,165 l23,1 l30,-144 l-49,-2 l-4,145z"},
-                     {stroke: "#4c4c4c", fill: "#666666",
-                      path: "m679,166 l-25,0 l-36,-120 l52,-4 l9,123z"},
                      {stroke: "#666666", fill: "#999999",
+                      path: "m697,165 l23,1 l30,-144 l-49,-2 l-4,145z"},
+                     {stroke: "#4c4c4c", fill: "#999999",
+                      path: "m679,166 l-25,0 l-36,-120 l52,-4 l9,123z"},
+                     {stroke: "#666666", fill: "#cccccc",
                       path: "m673,167 l-26,-158 l68,0 l-13,158 l-28,0z"}];
 
     var cityscape = svg.select(".cityscape");

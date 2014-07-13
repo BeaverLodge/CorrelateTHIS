@@ -36,6 +36,10 @@ ko.bindingHandlers.drugsBlock = {
         .attr("stroke", "#5D5124").attr("stroke-width", 11)
         .attr("fill", "#858930");
     popPill.append("line")
+        .attr("stroke", "#A1AA35").attr("stroke-width", 9)
+        .attr("x1", 91).attr("x2", 91)
+        .attr("y1", 21).attr("y2", 151);
+    popPill.append("line")
         .attr("stroke", "#5D5124").attr("stroke-width", 9)
         .attr("x1", 97).attr("x2", 97)
         .attr("y1", 21).attr("y2", 151);
@@ -51,6 +55,10 @@ ko.bindingHandlers.drugsBlock = {
         .attr("rx", 70).attr("ry", 70)
         .attr("stroke", "#5D5124").attr("stroke-width", 11)
         .attr("fill", "#858930");
+    filterPill.append("line")
+        .attr("stroke", "#A1AA35").attr("stroke-width", 9)
+        .attr("x1", 91).attr("x2", 91)
+        .attr("y1", 21).attr("y2", 151);
     filterPill.append("line")
         .attr("stroke", "#5D5124").attr("stroke-width", 9)
         .attr("x1", 97).attr("x2", 97)
