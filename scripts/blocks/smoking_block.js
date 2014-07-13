@@ -24,7 +24,7 @@ ko.bindingHandlers.smokingBlock = {
     svg.append("text")
        .attr("x", 150)
        .attr("y", 35)
-       .text("average")
+       .text("light up")
        .attr("fill", "#81c5f8")
        .attr("text-anchor", "middle")
 
@@ -44,7 +44,7 @@ ko.bindingHandlers.smokingBlock = {
        .attr("y", 140)
        .attr("fill", "#81c5f8")
        .attr("text-anchor", "middle")
-       .text("cigarettes per week")
+       .text("cigarettes every week")
 
 
   },
