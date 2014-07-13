@@ -16,12 +16,16 @@
 		<script src="./scripts/blocks/alcohol_block.js"></script>
 		<script src="./scripts/blocks/location_block.js"></script>
 		<script src="./scripts/blocks/drugs_block.js"></script>
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+		<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900' rel='stylesheet'/>
 		<link rel="stylesheet" href="./styles/app.css" />
-		<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900' rel='stylesheet' type='text/css'>		
 	</head>
-	<body>
-		<h1>Australia On Drugs</h1>
-		<h2 data-bind="visible:loading">Loading...</h2>
+	<body style="background: black">
+		<h1>Australia <nobr style="font-weight:100;">on drugs</nobr></h1>
+		<div class="loading" data-bind="visible:loading()">
+			<i class="fa fa-spinner fa-spin fa-2x" style="margin-right: 10px; position:relative; top:10px"></i>
+			<span>Loading...</span>
+		</div>
 
 		<!-- ko if:comparisons() -->
 		<section class="filters">
@@ -69,7 +73,7 @@
 												   value:remotenessFilter"></select>
 			</p>
 		</section>
-		<section style="display:block; float:left">
+		<section>
 			<h2 data-bind="text:title"></h2>
 			<div data-bind="ageBlock:comparisons()['AgeGroup1460plus']"></div>
 			<div data-bind="sexBlock:comparisons()['Sex']"></div>
@@ -77,6 +81,21 @@
 			<div data-bind="alcoholBlock:comparisons()['Alcohol']"></div>
 		  <div data-bind="locationBlock:comparisons()['ASGCremoteness4']"></div>
 		  <div data-bind="drugsBlock:comparisons()['Illicit']"></div>
+		</section>
+		<section class="about">
+			<p>Data Sources:</p>
+			<ul>
+				<li><b><a href="https://data.gov.au/dataset/national-drugs-strategy-household-survey">2010 National Drugs Strategy Household Survey</a></b></li>
+				<li><a href="http://stat.abs.gov.au/">Australian Bureau of Statistics - Apparent Consumption of Alcohol, Australia</a></li>
+				<li><a href="http://www.tobaccoinaustralia.org.au/chapter-2-consumption/2-9-best-estimate-of-recent-tobacco-consumption-in">Tobacco In Australia - Best estimate of recent tobacco consumption in Australia</a></li>
+			</ul>
+			<p>Hand-crafted with absolutely zero compromise in the space of 16 hours by:</p>
+			<ul>
+				<li><a href="https://github.com/hofdesu">Steph Hof</a></li>
+				<li><a href="https://github.com/natyoung">Nat Young</a></li>
+				<li><a href="https://github.com/entropyau">Brad Ward</a></li>
+			</ul>
+			<p>GovHack Perth - July 2014</p>
 		</section>
 		<!-- /ko -->
 	</body>

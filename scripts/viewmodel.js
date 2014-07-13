@@ -127,7 +127,7 @@ window.AppViewModel = function() {
       }
     }
 
-    return title + ":";
+    return title;
   });
 
   this.load();

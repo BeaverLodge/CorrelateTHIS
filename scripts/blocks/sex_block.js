@@ -78,8 +78,8 @@ ko.bindingHandlers.sexBlock = {
     d3.select(".label-male").text(Math.round(males * 100) + "%");
 
     var description = "";
-    if (males > females) description = "More males than females";
-    if (males < females) description = "More females than males";
+    if (males > females) description = "more likely male than female";
+    if (males < females) description = "more likely female than male";
 
     d3.select(element).select(".description")
       .text(description);
