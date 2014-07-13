@@ -4,13 +4,12 @@ ko.bindingHandlers.sexBlock = {
       .append("svg")
       .classed("block", true)
       .classed("sex", true)
-      .style("height", 220)
-      .style("width", 315);
+      .style("height", 180)
 
     svg.append("rect")
        .classed("background", true)
-       .attr("height", 220)
-       .attr("width", 315)
+       .attr("height", 180)
+       .attr("width", 800)
        .attr("fill", "#88c2ea");
 
     // male logo
@@ -28,8 +27,9 @@ ko.bindingHandlers.sexBlock = {
     svg.append("text").attr("transform", "translate(220 95)").attr("text-anchor", "middle").classed("label-female", true).attr("fill", "#71652b");
 
     svg.append("text")
-       .attr("transform", "translate(157.5 190)")
-       .attr("text-anchor", "middle")
+       .attr("transform", "translate(300 100)")
+       .style('font-size', 30)
+       .style('text-anchor', 'start')
        .attr('fill', '#bd5830')
        .classed("description", true);
   },
@@ -37,8 +37,8 @@ ko.bindingHandlers.sexBlock = {
     var value = ko.unwrap(valueAccessor());
 
     console.log(value);
-    var males = value.populationAAnswerFrequency.Sex["Portion1"];
-    var females = value.populationAAnswerFrequency.Sex["Portion2"];
+    var males = value.populationAAnswerFrequency.Sex["Portion1"] || 0;
+    var females = value.populationAAnswerFrequency.Sex["Portion2"] || 0;
 
     var width = 100,
         height = 100,

@@ -24,16 +24,16 @@ ko.bindingHandlers.smokingBlock = {
     svg.append("text")
        .attr("x", 150)
        .attr("y", 35)
-       .text("Average")
+       .text("average")
        .attr("fill", "#81c5f8")
        .attr("text-anchor", "middle")
 
     svg.append("text")
        .classed("per-week", true)
        .attr("x", 150)
-       .attr("y", 117)
-       .attr("font-size", 110)
-       .attr("font-weight", "light")
+       .attr("y", 114)
+       .attr("font-size", 100)
+       .attr("font-weight", 100)
        .attr("letter-spacing", -4)
        .attr("fill", "#81c5f8")
        .attr("text-anchor", "middle")
@@ -91,7 +91,7 @@ ko.bindingHandlers.smokingBlock = {
             .attr("width", ciggiWidth)
             .attr("y", ciggiHeight - filterHeight)
             .attr("height", 0)
-            .attr("fill", "white")
+            .attr("fill", "#EEE")
 
           ciggi.append("rect")
             .classed("ciggi-filter", true)
@@ -99,7 +99,7 @@ ko.bindingHandlers.smokingBlock = {
             .attr("width", ciggiWidth)
             .attr("y", ciggiHeight - filterHeight)
             .attr("height", filterHeight)
-            .attr("fill", "#e09c3b")
+            .attr("fill", "#ae7237")
 
           ciggi.append("rect")
             .classed("ciggi-filter-band", true)
@@ -107,7 +107,7 @@ ko.bindingHandlers.smokingBlock = {
             .attr("width", ciggiWidth)
             .attr("y", ciggiHeight - filterHeight)
             .attr("height", 3)
-            .attr("fill", "#a88815")
+            .attr("fill", "#bd5830")
 
 
           ciggi.append("rect")
