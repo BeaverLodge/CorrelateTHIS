@@ -14,8 +14,6 @@ ko.bindingHandlers.locationBlock = {
       .classed("cityscape", true);
 
     svg.append("g")
-      .classed("carArea", true)
-      .append("g")
         .classed("car", true);
 
     var car = svg.select(".car");
@@ -23,7 +21,6 @@ ko.bindingHandlers.locationBlock = {
     car.append("circle").attr("fill", "#3f7f00").attr("cx", 0).attr("cy", 0).attr("r", 13);
     car.append("circle").attr("fill", "#7f7f7f").attr("stroke", "#191919").attr("stroke-width", 4).attr("cx", 10).attr("cy", 13).attr("r", 5.2);
     car.append("circle").attr("fill", "#7f7f7f").attr("stroke", "#101010").attr("stroke-width", 4).attr("cx", -12).attr("cy", 13).attr("r", 5.2);
-    car.attr("transform", "translate(540 150)");
 
     svg.append("text")
        .classed("description", true)
@@ -51,23 +48,38 @@ ko.bindingHandlers.locationBlock = {
                   .text(message);
 
     var roadPath = function(d) {
-      return "m620 160 -" + d + " 0";
+      var point = (d < 0) ? d : -d;
+      return "m620 160 " + point + " 0";
     }
 
     var updater = svg.selectAll(".road")
       .data([distance]);
 
     updater.enter()
-      .append("path")
-        .attr("d", function(d) { return roadPath(d); })
-        .attr("stroke-dasharray", "40, 10")
-        .attr("stroke-width", 12)
-        .attr("stroke", "black")
-        .classed("road", true);
+      .append("g")
+        .each(function(d, i) {
+        var road = d3.select(this);
+        road.append("path")
+          .attr("d", roadPath(d) )
+          .attr("stroke-dasharray", "40, 10")
+          .attr("stroke-width", 12)
+          .attr("stroke", "black")
+          .classed("road", true);
+        var car = svg.select(".car");
+        car.transition()
+          .attr("transform", "translate(540 150)");
+    });
 
     updater
       .transition()
-      .attr("d", function(d) { return roadPath(d); });
+      .each(function(d) {
+        var road = d3.select(".road");
+        road.transition()
+          .attr("d", roadPath(d));
+        var car = svg.select(".car");
+        car.transition()
+          .attr("transform", "translate(" + (590 - d) +" 150)");
+      });
 
     updater.exit()
         .transition()

@@ -21,6 +21,8 @@ ko.bindingHandlers.drugsBlock = {
     var value = ko.unwrap(valueAccessor());
 
     var diff = Math.abs(value.populationAMean - value.populationBMean);
+    // Are XX% more likely to have been a recent user of illicit drugs
+    console.log(diff);
 
     var data = [];
 
