@@ -50,8 +50,8 @@ ko.bindingHandlers.locationBlock = {
 
     var svg = d3.select(element).select("svg");
 
-    if (diff <= 0 ) { message = "closer to the city" }
-    else { message = "further away from the city" }
+    if (diff <= 0 ) { message = "closer to the city than average"; }
+    else { message = "further away from the city than average"; }
 
     svg.select(".description-percentage")
                   .text(absDiff + "km");
