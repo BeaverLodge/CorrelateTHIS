@@ -44,11 +44,23 @@ section.filters select {
 	max-width: 180px;
 }
 
-
-
 .arc:first-of-type {
 	fill: #71652b;
 }
 .arc:last-of-type {
 	fill: #bd5830;
+}
+
+.pop-pill > .arc:first-of-type {
+	fill: #5D5124;
+}
+.pop-pill > .arc:last-of-type {
+	fill: none;
+}
+
+.filter-pill > .arc:first-of-type {
+	fill: #5D5124;
+}
+.filter-pill > .arc:last-of-type {
+	fill: none;
 }
