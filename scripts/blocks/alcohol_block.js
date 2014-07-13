@@ -31,11 +31,11 @@ ko.bindingHandlers.alcoholBlock = {
     var diff = Math.abs(value.populationAMean - value.populationBMean);
     var data = [];
     var glassData = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-    for (var i = 0; i < Math.floor(diff); i++) {
+    for (var i = 0; i < Math.floor(value.populationAMean); i++) {
       data.push(1);
     }
-    if (diff - Math.floor(diff) > 0) {
-      data.push(diff - Math.floor(diff));
+    if (value.populationAMean - Math.floor(value.populationAMean) > 0) {
+      data.push(value.populationAMean - Math.floor(value.populationAMean));
     }
     
     var msDelay = 200;

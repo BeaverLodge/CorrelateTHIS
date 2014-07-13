@@ -96,9 +96,9 @@ ASGCremoteness4,2,Inner Regional,50
 ASGCremoteness4,3,Outer Regional,200
 ASGCremoteness4,4,Remote/Very Remote,1000
 Alcohol,-1,Missing,
-Alcohol,1,Daily,10.79
-Alcohol,2,Weekly,7.54
-Alcohol,3,Less than weekly,3
+Alcohol,1,Daily,7
+Alcohol,2,Weekly,1
+Alcohol,3,Less than weekly,0.5
 Alcohol,4,Ex-drinker (not in last 12 months),0
 Alcohol,5,Never drinker (full glass),0
 Marijuana,-1,Missing,
