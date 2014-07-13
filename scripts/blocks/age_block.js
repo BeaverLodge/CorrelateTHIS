@@ -3,21 +3,27 @@ ko.bindingHandlers.ageBlock = {
     var svg = d3.select(element)
       .append("svg")
       .classed("block", true)
-      .classed("age", true);
+      .classed("age", true)
+      .style("height", 220);
 
     svg.append("rect")
        .classed("background", true)
-       .attr("height", 180)
+       .attr("height", 220)
        .attr("width", 800)
-       .attr("fill", "#EEE");
+       .style("fill", "#ad723d");
 
-    svg.append("g")
-       .classed("ciggi-group", true)
+    svg.append("svg:image")
+       .attr("xlink:href", "/images/age.png")
+       .attr("x", "60")
+       .attr("y", "60")
+       .attr("width", "1263")
+       .attr("height", "180");
 
     svg.append("text")
        .classed("description", true)
        .attr("x", 400)
-       .attr("y", 40);
+       .attr("y", 40)
+       .style("fill", "#86c1ec");
 
   },
   update: function (element, valueAccessor) {
@@ -75,7 +81,6 @@ ko.bindingHandlers.ageBlock = {
             .attr("y", ciggiHeight - filterHeight)
             .attr("height", 3)
             .attr("fill", "#a88815")
-
 
           ciggi.append("rect")
             .classed("ciggi-flame", true)

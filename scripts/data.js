@@ -11,9 +11,11 @@ window.DataHackMash = function() {
     _(filtered).each(function(surveyResponse) {
       for (var question in surveyResponse)
       {    
-        var answer = surveyResponse[question];
+        var answerKey = surveyResponse[question];
         var currentQuestion = questionAnswerCount[question] || {};
-        currentQuestion[answer] = (currentQuestion[answer] || 0) + 1 / filteredResults;
+        currentQuestion[answerKey] = (currentQuestion[answerKey] || 0) + 1 / filteredResults;
+        currentQuestion["Count" + answerKey] = (currentQuestion["Count" + answerKey] || 0) + 1;
+        currentQuestion["Portion" + answerKey] = currentQuestion["Count" + answerKey] / self.surveyResponses.length;
         questionAnswerCount[question] = currentQuestion;
       }
     }); 
@@ -26,6 +28,8 @@ window.DataHackMash = function() {
     var numResponses = 0;
     for (var answerKey in answerFrequency)
     {
+      if (answerKey.indexOf("Count") != -1) continue;
+      if (answerKey.indexOf("Portion") != -1) continue;
       sumOfUnitValues += answerFrequency[answerKey] * questionDefinition.answerUnitValue[answerKey];
       numResponses += answerFrequency[answerKey];
     }
@@ -50,7 +54,9 @@ window.DataHackMash = function() {
 
       blah[questionKey] = {
         populationAMean: populationAMean,
-        populationBMean: populationBMean
+        populationBMean: populationBMean,
+        populationAAnswerFrequency: populationAAnswerFrequency,
+        populationBAnswerFrequency: populationBAnswerFrequency
       };
 
       // console.log("Mean of " + populationAMean.toFixed(3) + " vs " + populationBMean.toFixed(3));
