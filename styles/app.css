@@ -78,8 +78,6 @@ section.filters select {
 	font-size: 14px;
 }
 
-
-
 .arc:first-of-type {
 	fill: #71652b;
 }
@@ -117,4 +115,17 @@ section.about p {
 
 a {
 	text-decoration: none;
+}
+.pop-pill > .arc:first-of-type {
+	fill: #5D5124;
+}
+.pop-pill > .arc:last-of-type {
+	fill: none;
+}
+
+.filter-pill > .arc:first-of-type {
+	fill: #5D5124;
+}
+.filter-pill > .arc:last-of-type {
+	fill: none;
 }
