@@ -46,7 +46,7 @@ ko.bindingHandlers.alcoholBlock = {
 
     var svg = d3.select(element).select("svg");
 
-    var text = "average freuency of alcohol consumption";
+    var text = "average frequency of alcohol consumption";
     var description = svg.select('.description')
       .text(text);
 
