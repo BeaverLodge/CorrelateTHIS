@@ -48,7 +48,7 @@ ko.bindingHandlers.drugsBlock = {
         .attr("x1", 91).attr("x2", 91)
         .attr("y1", 21).attr("y2", 151);
 
-    filterPill.attr("transform", "translate(60 10)");
+    filterPill.attr("transform", "translate(60 5)");
   },
   update: function (element, valueAccessor) {
     var value = ko.unwrap(valueAccessor());
