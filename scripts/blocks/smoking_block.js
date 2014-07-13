@@ -9,15 +9,43 @@ ko.bindingHandlers.smokingBlock = {
        .classed("background", true)
        .attr("height", 180)
        .attr("width", 800)
-       .attr("fill", "#EEE");
+       .attr("fill", "#71652b");
 
     svg.append("g")
        .classed("ciggi-group", true)
+       .attr("transform", "translate(300 20)")
 
     svg.append("text")
-       .classed("description", true)
-       .attr("x", 400)
-       .attr("y", 40);
+       .classed("sub-description", true)
+       .attr("x", 150)
+       .attr("y", 160)
+       .attr("fill", "#81c5f8");
+
+    svg.append("text")
+       .attr("x", 150)
+       .attr("y", 35)
+       .text("Average")
+       .attr("fill", "#81c5f8")
+       .attr("text-anchor", "middle")
+
+    svg.append("text")
+       .classed("per-week", true)
+       .attr("x", 150)
+       .attr("y", 117)
+       .attr("font-size", 110)
+       .attr("font-weight", "light")
+       .attr("letter-spacing", -4)
+       .attr("fill", "#81c5f8")
+       .attr("text-anchor", "middle")
+       .text()
+
+    svg.append("text")
+       .attr("x", 150)
+       .attr("y", 140)
+       .attr("fill", "#81c5f8")
+       .attr("text-anchor", "middle")
+       .text("cigarettes per week")
+
 
   },
   update: function (element, valueAccessor) {
@@ -29,16 +57,21 @@ ko.bindingHandlers.smokingBlock = {
 
     var lessThan = value.populationAMean < value.populationBMean ? true : false;
 
-    for (var i = 0; i < Math.floor(diff); i++) data.push(1);
-    if (diff - Math.floor(diff) > 0) data.push(diff - Math.floor(diff));
+
+    var ciggisToShow = Math.min(value.populationAMean * 7, 25);
+    for (var i = 0; i < Math.floor(ciggisToShow); i++) data.push(1);
+    if (ciggisToShow - Math.floor(ciggisToShow) > 0) data.push(ciggisToShow - Math.floor(ciggisToShow));
 
     var svg = d3.select(element).select("svg");
     var ciggiGroup = svg.select(".ciggi-group");
 
     var adjective = lessThan ? "fewer" : "more"
-    var text = svg.select(".description")
-                  .text("...on average smoke " + Math.round(diff * 10) / 10 + " " + adjective + " cigarettes a week");
-    ciggiGroup.attr("transform", "translate(20 20)")
+    if (value.populationAMean == value.populationBMean)
+    {
+      svg.select(".sub-description").text("");
+    } else {
+      svg.select(".sub-description").text("...that's " + Math.round(diff * 10) / 10 + " " + adjective + " than everyone else");
+    }
 
     var updater = ciggiGroup.selectAll(".ciggi")
        .data(data);
@@ -83,8 +116,10 @@ ko.bindingHandlers.smokingBlock = {
             .attr("width", ciggiWidth)
             .attr("y", 0)
             .attr("height", 10)
-            .attr("fill", "#444")
+            .attr("fill", "#444");
+
         });
+
 
     updater
       .each(function(d, i) {
@@ -105,6 +140,7 @@ ko.bindingHandlers.smokingBlock = {
     updater.exit()
       .remove();
 
-    window.ciggiData = data;
+    svg.select(".per-week", true)
+       .text((value.populationAMean * 7).toFixed(1))
   }
 };
