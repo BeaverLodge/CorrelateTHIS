@@ -4,11 +4,11 @@ ko.bindingHandlers.ageBlock = {
       .append("svg")
       .classed("block", true)
       .classed("age", true)
-      .style("height", 220);
+      .style("height", 240);
 
     svg.append("rect")
        .classed("background", true)
-       .attr("height", 220)
+       .attr("height", 240)
        .attr("width", 800)
        .style("fill", "#ad723d");
 

@@ -87,14 +87,21 @@ section.filters select {
 
 
 section.about {
-	background: white;
+	background: #716720;
 	padding: 20px;
 	font-family: 'Source Sans Pro', sans-serif;
 	font-weight: 100;
+	color: white;
+	width: 800px;
+	box-sizing: border-box;
 }
 
 section.about p {
 	font-weight: 400;
+}
+
+section.about a {
+	color: #DDD;
 }
 
 
