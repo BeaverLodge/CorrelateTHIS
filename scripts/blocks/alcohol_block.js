@@ -28,58 +28,83 @@ ko.bindingHandlers.alcoholBlock = {
     var msDelay = 500;
     var glassHeight = 80;
     var glassWidth = 50;
+    var bonusVar = 100;
+
     var svg = d3.select(element).select("svg");
 
-    var cups = svg.selectAll(".glass")
+    var glassesGroup = svg.append('g')
+      .attr("transform", "translate(20,20)");
+    var glasses = glassesGroup.selectAll(".glass")
       .data(glassData);
 
-    cups.enter()
+    glasses.enter()
       .append("rect")
       .attr("class", "glass")
       .attr('fill', '#ffffff')
       .attr('stroke', '#dbc5c5')
-      .attr('stroke-width', 4)
+      .attr('stroke-width', 2)
       .attr("width", glassWidth)
       .attr("height", glassHeight)
-      .attr("x", function(d, i) { return i * glassWidth; } );
+      .attr("x", function(d, i) { return i * (glassWidth + 10); } );
 
-    var contents = svg.selectAll(".contents")
+    var contentsGroup = svg.append('g')
+      .attr("transform", "translate(20,20)");
+    var contents = contentsGroup.selectAll(".contents")
       .data(data);
-      
+
     contents.enter()
       .append("rect")
       .attr("class", "contents")
-      .attr("x", function(d, i) { return i * glassWidth + 4; } )
+      .attr("x", function(d, i) { return i * (glassWidth + 10); } )
       .attr("y", glassHeight - 8)
-      .attr("width", glassWidth - 8)
+      .attr("width", glassWidth)
       .attr("height", 0)
+      .attr('fill-opacity', '0.1')
       .attr("fill", '#ff7f00');
 
-    contents
-      .transition()
+    contents.transition()
       .delay(function(d, i) { return i * msDelay; })
-      .attr("y", function(d) { return glassHeight - d * glassHeight; } )
-      .attr("height", function(d) { return d * glassHeight; } );
+      .attr("y", function(d) { return glassHeight - d * glassHeight + 8; } )
+      .attr('fill-opacity', '0.9')
+      .attr("height", function(d) { return d * glassHeight - 10; } );
 
     contents.exit()
       .transition()
       .attr("y", glassHeight - 8)
       .attr("height", 0)
       .remove();
-  }
+    
+    var bubbleGroup = svg.append('g')
+      .attr("transform", "translate(20,10)");
+    var bubblesData = _.reject(data, function(d) { return d < 1; });  
+    var bubbles = bubbleGroup.selectAll(".bubble")
+      .data(bubblesData);
+
+    bubbles.enter()
+      .append("rect")
+      .attr("class", "bubble")
+      .attr("x", function(d, i) { return i * (glassWidth + 10); } )
+      .attr("y", function(d) { return glassHeight - d * glassHeight + 10; })
+      .attr("width", glassWidth)
+      .attr("height", 0)
+      .attr('stroke', '#ffffff')
+      .attr('stroke-width', 0)
+      .attr('fill-opacity', '0.0')
+      .attr("fill", '#ffffff');
+
+    bubbles.transition()
+      .delay(function(d, i) { return i * msDelay; })
+      .duration(3000)
+      .attr('stroke', '#ffffff')
+      .attr('stroke-width', 2)
+      .attr("y", function(d) { return glassHeight - d * glassHeight + 8; } )
+      .attr('fill-opacity', '0.9')
+      .attr("height", 10 );
+
+    bubbles.exit()
+      .transition()
+      .attr("y", glassHeight - 8)
+      .attr("height", 0)
+      .remove();  
+  } 
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
