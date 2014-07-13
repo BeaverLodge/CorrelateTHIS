@@ -19,11 +19,22 @@ text.description {
 	text-anchor: middle;
 }
 
+text.sub-description {
+	font-size: 14px;
+	text-anchor: middle;
+}
+
 h2 {
 	font-family: 'Source Sans Pro', sans-serif;
 	font-weight: bold;
 	display: block;
 	width: 800px;
+	background: #262626;
+	color: white;
+	text-align: center;
+	padding: 20px;
+	margin: 0;
+	box-sizing: border-box;
 }
 
 section.filters {

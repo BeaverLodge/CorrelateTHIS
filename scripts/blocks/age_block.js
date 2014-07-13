@@ -13,9 +13,10 @@ ko.bindingHandlers.ageBlock = {
        .style("fill", "#ad723d");
 
     svg.append("svg:image")
+       .classed("age-image", true)
        .attr("xlink:href", "/images/age.png")
        .attr("x", "60")
-       .attr("y", "60")
+       .attr("y", "95")
        .attr("width", "1263")
        .attr("height", "180");
 
@@ -23,7 +24,26 @@ ko.bindingHandlers.ageBlock = {
        .classed("description", true)
        .attr("x", 400)
        .attr("y", 40)
+       .style("font-size", 30)
+       .style("font-weight", "bold")
        .style("fill", "#86c1ec");
+
+    svg.append("text")
+       .classed("sub-description", true)
+       .attr("x", 400)
+       .attr("y", 60)
+       .style("fill", "#86c1ec");
+
+    svg.append("path")
+        .classed("average-arrow", true)
+        .attr("d", "M420,70 L400,90 L380,70 Z")
+        .attr("fill", "#86c1ec")
+        .attr("transform", "translate(0,0)")
+        .attr("opacity", 0.5)
+
+    svg.append("path")
+        .attr("d", "M420,70 L400,90 L380,70 Z")
+        .attr("fill", "#86c1ec")
 
   },
   update: function (element, valueAccessor) {
@@ -39,77 +59,26 @@ ko.bindingHandlers.ageBlock = {
     if (diff - Math.floor(diff) > 0) data.push(diff - Math.floor(diff));
 
     var svg = d3.select(element).select("svg");
-    var ciggiGroup = svg.select(".ciggi-group");
 
-    var adjective = lessThan ? "younger" : "older"
-    var text = svg.select(".description")
-                  .text("...on average be " + Math.round(diff * 10) / 10 + " years " + adjective);
-    ciggiGroup.attr("transform", "translate(20 20)")
+    var scale = d3.scale.linear().domain([14.5,70]).range([40,1200])
 
-    var updater = ciggiGroup.selectAll(".ciggi")
-       .data(data);
+    svg.select(".age-image")
+       .transition()
+       .duration(2500)
+       .attr("x", 400 - scale(value.populationAMean));
 
-    var ciggiHeight = 140;
-    var ciggiWidth = 15;
-    var filterHeight = 40;
+    svg.select(".average-arrow")
+       .transition()
+       .duration(2500)
+       .attr("transform", "translate(" + (719.5 - scale(value.populationAMean)) + ", 0)");
 
-    updater.enter()
-      .append("g")
-        .classed("ciggi", true)
-        .each(function(d, i) {
-          var ciggi = d3.select(this);
-          ciggi.append("rect")
-            .classed("ciggi-body", true)
-            .attr("x", i * (ciggiWidth + 5) )
-            .attr("width", ciggiWidth)
-            .attr("y", ciggiHeight - filterHeight)
-            .attr("height", 0)
-            .attr("fill", "white")
+    svg.select(".description").text("average " + value.populationAMean.toFixed(1) + " years old")
 
-          ciggi.append("rect")
-            .classed("ciggi-filter", true)
-            .attr("x", i * (ciggiWidth + 5) )
-            .attr("width", ciggiWidth)
-            .attr("y", ciggiHeight - filterHeight)
-            .attr("height", filterHeight)
-            .attr("fill", "#e09c3b")
+    var subDescription = ""
+    if (value.populationAMean < value.populationBMean) subDescription = "that's " + diff.toFixed(1) + " years younger than the average";  
+    if (value.populationAMean > value.populationBMean) subDescription = "that's " + diff.toFixed(1) + " years older than the average";  
+    svg.select(".sub-description").text(subDescription)
 
-          ciggi.append("rect")
-            .classed("ciggi-filter-band", true)
-            .attr("x", i * (ciggiWidth + 5) )
-            .attr("width", ciggiWidth)
-            .attr("y", ciggiHeight - filterHeight)
-            .attr("height", 3)
-            .attr("fill", "#a88815")
 
-          ciggi.append("rect")
-            .classed("ciggi-flame", true)
-            .attr("x", i * (ciggiWidth + 5) )
-            .attr("width", ciggiWidth)
-            .attr("y", 0)
-            .attr("height", 10)
-            .attr("fill", "#444")
-        });
-
-    updater
-      .each(function(d, i) {
-        var ciggi = d3.select(this);        
-        ciggi.select(".ciggi-body")
-             .transition()
-             // .delay(function(d, i) { return i * 100; })
-             .attr("y", (ciggiHeight - filterHeight) - d * (ciggiHeight - filterHeight) )
-             .attr("height", d * (ciggiHeight - filterHeight) );
-        ciggi.select(".ciggi-flame")
-          .transition()
-          // .delay(function(d, i) { return i * 100; })
-          .attr("y", (ciggiHeight - filterHeight) - d * (ciggiHeight - filterHeight) )
-          .attr("height", 10 )
-          .attr("opacity", (d === 1 ? 0 : 1));
-      })
-
-    updater.exit()
-      .remove();
-
-    window.ciggiData = data;
   }
 };
