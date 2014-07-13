@@ -19,6 +19,7 @@ ko.bindingHandlers.smokingBlock = {
        .classed("sub-description", true)
        .attr("x", 150)
        .attr("y", 160)
+       .attr("opacity", 0.5)
        .attr("fill", "#81c5f8");
 
     svg.append("text")
@@ -31,8 +32,8 @@ ko.bindingHandlers.smokingBlock = {
     svg.append("text")
        .classed("per-week", true)
        .attr("x", 150)
-       .attr("y", 114)
-       .attr("font-size", 100)
+       .attr("y", 110)
+       .attr("font-size", 90)
        .attr("font-weight", 100)
        .attr("letter-spacing", -4)
        .attr("fill", "#81c5f8")
@@ -70,7 +71,7 @@ ko.bindingHandlers.smokingBlock = {
     {
       svg.select(".sub-description").text("");
     } else {
-      svg.select(".sub-description").text("...that's " + Math.round(diff * 10) / 10 + " " + adjective + " than everyone else");
+      svg.select(".sub-description").text("(that's " + Math.round(diff * 10) / 10 + " " + adjective + " than everyone else)");
     }
 
     var updater = ciggiGroup.selectAll(".ciggi")
