@@ -123,12 +123,6 @@ section.about a {
 a {
 	text-decoration: none;
 }
-.pop-pill > .arc:first-of-type {
-	fill: #5D5124;
-}
-.pop-pill > .arc:last-of-type {
-	fill: none;
-}
 
 .filter-pill > .arc:first-of-type {
 	fill: #5D5124;
