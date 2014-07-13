@@ -24,13 +24,12 @@ ko.bindingHandlers.drugsBlock = {
        .style("fill", "#AB4429")
        .attr("x", 430)
        .attr("y", 120)
-       .text(" chance that you do illicit drugs");
+       .text(" chance  they do illicit drugs");
 
     svg.append("text")
        .classed("tagline", true)
        .style("font-size", 16)
        .style("fill", "#AB4429")
-       .style("font-weight", "bold")
        .attr("x", 490)
        .attr("y", 160);
 
@@ -39,16 +38,25 @@ ko.bindingHandlers.drugsBlock = {
 
     var filterPill = svg.select(".filter-pill");
     filterPill.append("ellipse")
+        .attr("cx", 93).attr("cy", 96)
+        .attr("rx", 70).attr("ry", 80)
+        .attr("stroke", "#5D5124").attr("stroke-width", 11)
+        .attr("fill", "#5D5124");
+    filterPill.append("ellipse")
         .attr("cx", 93).attr("cy", 86)
         .attr("rx", 70).attr("ry", 70)
         .attr("stroke", "#5D5124").attr("stroke-width", 11)
         .attr("fill", "#858930");
     filterPill.append("line")
+        .attr("stroke", "#5D5124").attr("stroke-width", 5)
+        .attr("x1", 86).attr("x2", 86)
+        .attr("y1", 30).attr("y2", 144);
+    filterPill.append("line")
         .attr("stroke", "#A1AA35").attr("stroke-width", 9)
         .attr("x1", 91).attr("x2", 91)
-        .attr("y1", 21).attr("y2", 151);
+        .attr("y1", 30).attr("y2", 144);
 
-    filterPill.attr("transform", "translate(60 5)");
+    filterPill.attr("transform", "translate(20 100) rotate(-45) scale(1 .8)");
   },
   update: function (element, valueAccessor) {
     var value = ko.unwrap(valueAccessor());
@@ -66,13 +74,6 @@ ko.bindingHandlers.drugsBlock = {
 
     var arc = d3.svg.arc().outerRadius(70).innerRadius(0);
     var pie = d3.layout.pie().sort(null).value(function(d) { return d.value; });
-
-    var popPieGroup = d3.select(element).select(".pop-pill");
-    var popData = [{ value: populationAverage, label: 'yes'}, { value: 1-populationAverage, label: 'no'}];
-
-    var popGroup = popPieGroup.selectAll(".arc").data(pie(popData));
-    popGroup.enter().append("path").attr("d", arc).attr("class", "arc");
-    popGroup.attr("d", arc).attr("transform", "translate(93, 86)");
 
     var filterPieGroup = d3.select(element).select(".filter-pill");
     var filterData = [{ value: filterAverage, label: 'yes'}, { value: 1-filterAverage, label: 'no'}];
